@@ -1,0 +1,35 @@
+<section class="section-auth">
+  <form [formGroup]="loginForm" class="section-auth__form">
+    <h1 class="form__title">Sign In</h1>
+
+    <div class="form__item item-bottom-line">
+      <label class="item__label" for="email">User Email:</label>
+      <input
+        formControlName="email"
+        class="item__input"
+        type="email"
+        name="email"
+        autocomplete="on"
+      />
+    </div>
+
+    <div class="form__item">
+      <label class="item__label" for="password">Password:</label>
+      <input
+        formControlName="password"
+        class="item__input"
+        type="password"
+        name="password"
+        autocomplete="on"
+      />
+    </div>
+
+    <button
+      [disabled]="!loginForm.valid"
+      class="form__button"
+      (click)="signIn()"
+    >
+      SIGN IN
+    </button>
+  </form>
+</section>

@@ -1,0 +1,199 @@
+@import "src/assets/scss/variables";
+
+.section-search {
+  max-width: 900px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+
+  &__search-bar {
+    margin-top: 50px;
+    max-width: 100%;
+    width: 100%;
+    min-height: 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid $base-grey-additional;
+    border-radius: 12px;
+    padding: 10px;
+    gap: 40px;
+
+    .search-bar__block {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      max-width: 100%;
+      width: 100%;
+
+      .block__input-wrapper {
+        max-width: 100%;
+        width: 100%;
+        min-height: 30px;
+        display: flex;
+        position: relative;
+
+        .input-wrapper__input {
+          font-size: 18px;
+          max-width: 100%;
+          width: 100%;
+          min-height: 30px;
+          border-radius: 6px;
+          padding: 5px;
+          padding-right: 40px;
+          border-right: none;
+          border: 2px solid $base-black;
+        }
+
+        .input-wrapper__icon {
+          color: $accent-primary-light;
+          font-size: 40px;
+          width: 40px;
+          height: 40px;
+          transform: scaleX(-1);
+          position: absolute;
+          right: 0;
+        }
+      }
+
+      .block__error {
+        font-size: 18px;
+        color: $alert-error;
+        margin-top: 4px;
+      }
+    }
+
+    .search-bar__button {
+      max-width: 150px;
+      width: 100%;
+      min-height: 60px;
+      border-radius: 12px;
+      border: none;
+      color: $base-white;
+      font-size: 20px;
+      background-color: $accent-primary-light;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    .disabled {
+      background-color: $alert-error;
+    }
+  }
+
+  &__results {
+    max-width: 100%;
+    width: 100%;
+    min-height: 100px;
+    border: 2px solid $base-grey-additional;
+    border-radius: 12px;
+    padding: 10px;
+    margin-top: 50px;
+
+    .results__table {
+      margin-bottom: 20px;
+
+      .table__title {
+        font-size: 22px;
+      }
+
+      .table__empty {
+        font-size: 22px;
+        margin-top: 20px;
+        color: $alert-error;
+      }
+    }
+
+    .results__details {
+      max-width: 100%;
+      width: 100%;
+      min-height: 100px;
+      border: 1px solid $base-grey-additional;
+      padding: 10px;
+      margin-bottom: 10px;
+
+      .details__title {
+        font-size: 20px;
+        margin-bottom: 15px;
+      }
+
+      .details__container {
+        max-width: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        .container__item {
+          max-width: 49%;
+          width: 100%;
+          border: 2px solid $base-black;
+          padding: 5px;
+
+          .item__title {
+            font-size: 20px;
+            margin-bottom: 20px;
+          }
+
+          .item__text {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: $alert-error;
+          }
+
+          .item__usage {
+            max-width: 100%;
+            width: 100%;
+          }
+
+          .item__characteristics {
+            max-width: 100%;
+            width: 100%;
+            border: 1px solid $base-black;
+
+            .characteristics__item {
+              max-width: 100%;
+              width: 100%;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 8px;
+              gap: 20px;
+
+              &:nth-child(odd) {
+                background-color: $text-default-medium;
+              }
+
+              &:nth-child(even) {
+                background-color: $text-accent-medium;
+              }
+
+              .item__attribute-text {
+                max-width: 190px;
+                width: 100%;
+                font-size: 14px;
+                color: $base-black;
+                margin-bottom: 0;
+              }
+
+              .name {
+                text-align: left;
+              }
+
+              .value {
+                text-align: right;
+              }
+            }
+          }
+
+          .usage__form-field {
+            max-width: 100%;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}

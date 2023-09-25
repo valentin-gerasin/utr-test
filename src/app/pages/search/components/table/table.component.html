@@ -1,0 +1,76 @@
+<div class="grid">
+  <mat-table #table [dataSource]="dataSource">
+    <ng-container matColumnDef="article">
+      <mat-header-cell class="header-border article" *matHeaderCellDef
+        >Article</mat-header-cell
+      >
+      <mat-cell class="additional-border article" *matCellDef="let element">
+        {{ element.article }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="title">
+      <mat-header-cell class="header-border title" *matHeaderCellDef
+        >Title</mat-header-cell
+      >
+      <mat-cell class="additional-border title" *matCellDef="let element">
+        <p *ngIf="element.title">
+          {{ element.title }}
+        </p>
+        <p class="no-title" *ngIf="!element.title">---No title provided---</p>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="remains">
+      <mat-header-cell class="header-border price" *matHeaderCellDef
+        >Remains</mat-header-cell
+      >
+      <mat-cell class="additional-border price" *matCellDef="let element">
+        {{ element.remains.length ? element.remains[0].remain : 0 }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <mat-header-cell class="header-border price" *matHeaderCellDef
+        >Price</mat-header-cell
+      >
+      <mat-cell class="additional-border price" *matCellDef="let element">
+        {{ element.yourPrice.amount }}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <mat-header-cell class="header-border cart" *matHeaderCellDef
+        >Action</mat-header-cell
+      >
+      <mat-cell class="additional-border cart" *matCellDef="let element">
+        <mat-icon class="grid-icon">shopping_cart</mat-icon>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <ng-container *ngIf="tableType === 'results'">
+      <mat-row
+        [ngClass]="{
+          'active-item': row === (activeElement$ | async)
+        }"
+        *matRowDef="let row; columns: displayedColumns"
+        (click)="chooseElement(row)"
+        class="row"
+      ></mat-row>
+    </ng-container>
+
+    <ng-container *ngIf="tableType === 'analogs'">
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </ng-container>
+  </mat-table>
+
+  <mat-paginator
+    #paginator
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    [showFirstLastButtons]="true"
+  >
+  </mat-paginator>
+</div>

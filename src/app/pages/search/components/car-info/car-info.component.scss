@@ -1,0 +1,43 @@
+@import "src/assets/scss/variables";
+
+.car-info {
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  max-width: 100%;
+  width: 100%;
+  margin-bottom: 20px;
+  border: 2px solid $base-black;
+
+  &__item {
+    display: flex;
+    max-width: 100%;
+    width: 100%;
+    justify-content: space-between;
+    padding: 8px;
+
+    .item__text {
+      font-size: 14px;
+      color: $base-black;
+    }
+
+    .name {
+      text-align: left;
+    }
+
+    .value {
+      text-align: right;
+    }
+  }
+
+  .model-color {
+    background-color: $text-default-disabled;
+  }
+
+  .primary-additional-color {
+    background-color: $text-accent-medium;
+  }
+
+  .secondary-additional-color {
+    background-color: $text-default-medium;
+  }
+}
