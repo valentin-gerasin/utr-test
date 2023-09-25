@@ -1,0 +1,124 @@
+<section class="section-search">
+  <div class="section-search__search-bar">
+    <div class="search-bar__block">
+      <div class="block__input-wrapper">
+        <input
+          [formControl]="searchFormControl"
+          class="input-wrapper__input"
+          type="text"
+          placeholder="Enter the article"
+        />
+        <mat-icon class="input-wrapper__icon">search</mat-icon>
+      </div>
+      <p class="block__error" *ngIf="!searchFormControl.valid">
+        Type minimum 3 symbols
+      </p>
+    </div>
+
+    <button
+      [disabled]="!searchFormControl.valid"
+      [ngClass]="{ disabled: !searchFormControl.valid }"
+      (click)="getItemsByArticle()"
+      class="search-bar__button"
+    >
+      Find
+    </button>
+  </div>
+
+  <div class="section-search__results">
+    <div class="results__table">
+      <h2 class="table__title">Results</h2>
+
+      <app-table
+        [tableType]="tableTypes.results"
+        [products]="results$ | async"
+      ></app-table>
+
+      <p *ngIf="!(analogs$ | async)!.length" class="table__empty">
+        Find the part or there is no such part!
+      </p>
+    </div>
+
+    <div class="results__details">
+      <h2 class="details__title">Detail Info</h2>
+
+      <div class="details__container">
+        <div class="container__item">
+          <h3 class="item__title">Part Usage</h3>
+          <p *ngIf="!usage.length" class="item__text">
+            There is no usage info, or there is no usage info for this part yet!
+          </p>
+
+          <ng-container *ngIf="usage.length">
+            <div class="item__usage">
+              <mat-form-field class="usage__form-field">
+                <mat-label>Manufacturer</mat-label>
+                <mat-select
+                  [(value)]="selectedManufacturer"
+                  (selectionChange)="onManufacturerSelected()"
+                >
+                  <mat-option
+                    *ngFor="let item of usage"
+                    [value]="item.manufacturer"
+                  >
+                    {{ item.manufacturer }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field class="usage__form-field">
+                <mat-label>Model</mat-label>
+                <mat-select [(value)]="selectedModel">
+                  <mat-option
+                    *ngFor="let item of getModelOptions()"
+                    [value]="item"
+                  >
+                    {{ item }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <app-car-info
+                *ngFor="let item of getCarsForModel()"
+                [carInfo]="item"
+              ></app-car-info>
+            </div>
+          </ng-container>
+        </div>
+
+        <div class="container__item">
+          <h3 class="item__title">Part Characteristics</h3>
+          <p *ngIf="!(characteristics$ | async)!.length" class="item__text">
+            There is no characteristics info, or there is no characteristics
+            info for this part yet!
+          </p>
+
+          <ng-container *ngIf="(characteristics$ | async)!.length">
+            <div class="item__characteristics">
+              <div
+                class="characteristics__item"
+                *ngFor="let item of characteristics$ | async"
+              >
+                <p class="item__attribute-text name">
+                  {{ item.attribute.name }}
+                </p>
+                <p class="item__attribute-text value">{{ item.value }}</p>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+    <div class="results__table">
+      <h2 class="table__title">Analogs</h2>
+      <app-table
+        [tableType]="tableTypes.analogs"
+        [products]="analogs$ | async"
+      ></app-table>
+      <p *ngIf="!(analogs$ | async)!.length" class="table__empty">
+        Find the part or there is no analogs for this part!
+      </p>
+    </div>
+  </div>
+</section>

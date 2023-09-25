@@ -1,0 +1,70 @@
+@import "src/assets/scss/variables";
+
+.grid {
+  max-width: 920px;
+  width: 100%;
+
+  .grid-icon {
+    color: $base-grey-additional;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .active-item {
+    background-color: $text-default-medium;
+  }
+
+  .row:hover {
+    background-color: $text-default-disabled;
+    cursor: pointer;
+  }
+
+  .additional-border {
+    border: 2px solid $base-black !important;
+    border-top: none !important;
+  }
+
+  .cart {
+    max-width: 100px;
+    width: 100%;
+    @extend %center;
+  }
+
+  .price {
+    max-width: 120px;
+    width: 100%;
+    @extend %center;
+  }
+
+  .title {
+    max-width: 410px;
+    width: 100%;
+    @extend %center;
+  }
+
+  .no-title {
+    opacity: 0.3;
+  }
+
+  .article {
+    max-width: 150px;
+    width: 100%;
+    @extend %center;
+    text-align: center;
+  }
+
+  .header-border {
+    border: 2px solid $base-black !important;
+  }
+}
+
+%center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  padding: 0 10px;
+}
